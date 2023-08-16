@@ -5,14 +5,11 @@ In this example, Deploying a simple "Hello World" web application using Nginx in
 Create the Directory Structure:
 
 my_app_deployment
-├── deploy_app.yml
-├── templates/
-│   └── nginx_site.conf.j2
-├── files/
-│   └── index.html
-└── vars.yml
+    deploy_app.yml
+    templates/nginx_site.conf.j2
+    files/index.html
+    vars.yml
 
-
- Run the Playbook:
+1) Run the Playbook:
 
 ansible-playbook deploy_app.yml
