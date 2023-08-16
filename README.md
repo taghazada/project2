@@ -1,5 +1,6 @@
 
-Ansible playbook for deploying a sample application in a Docker container with the use of variables and Jinja2 templates. In this example, Deploying a simple "Hello World" web application using Nginx in a Docker container.
+Ansible playbook for deploying a sample application in a Docker container with the use of variables and Jinja2 templates. 
+In this example, Deploying a simple "Hello World" web application using Nginx in a Docker container.
 
 Create the Directory Structure:
 
