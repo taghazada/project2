@@ -4,7 +4,7 @@ In this example, Deploying a simple "Hello World" web application using Nginx in
 
 Create the Directory Structure:
 
-my_app_deployment/
+my_app_deployment
 ├── deploy_app.yml
 ├── templates/
 │   └── nginx_site.conf.j2
