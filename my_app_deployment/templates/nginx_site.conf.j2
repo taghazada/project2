@@ -1,0 +1,10 @@
+
+server {
+    listen {{ host_port }};
+    server_name {{ domain_name }};
+
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.htm;
+    }
+}

@@ -1,0 +1,63 @@
+---
+- name Deploy Web Application in Docker
+  hosts dev.demo.oldbaku.net
+  become true
+
+  vars_files
+    - vars.yml
+
+  tasks
+    - name Install Docker and Docker Compose
+      apt
+        name
+          - docker.io
+          - docker-compose
+        state present
+      become true
+
+    - name Start Docker service
+      service
+        name docker
+        state started
+        enabled true
+
+    - name Create Docker network
+      docker_network
+        name {{ app_name }}_network
+
+    - name Copy index.html to host
+      copy
+        src filesindex.html
+        dest varwww{{ app_name }}index.html
+      become true
+
+    - name Configure Nginx for the application
+      template
+        src templatesnginx_site.conf.j2
+        dest etcnginxsites-available{{ app_name }}
+      become true
+
+    - name Enable Nginx site
+      file
+        src etcnginxsites-available{{ app_name }}
+        dest etcnginxsites-enabled{{ app_name }}
+        state link
+      become true
+
+    - name Reload Nginx
+      service
+        name nginx
+        state reloaded
+      become true
+
+    - name Run Docker container
+      docker_container
+        name {{ app_name }}_container
+        image nginxlatest
+        ports
+          - {{ host_port }}{{ container_port }}
+        networks
+          - name {{ app_name }}_network
+        volumes
+          - varwww{{ app_name }}usrsharenginxhtmlro
+      become true
